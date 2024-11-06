@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            font-family: 'Arial', sans-serif;
+            color: #ecf0f1;
+            overflow: hidden;
+        }
+
+        .box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: #e74c3c;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .box .open-button {
+            position: absolute;
+            bottom: 10px;
+            width: 80%;
+            padding: 10px;
+            background-color: #f39c12;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .box .open-button:hover {
+            background-color: #e67e22;
+        }
+
+        .cake {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .cake img {
+            width: 150px;
+            height: auto;
+        }
+
+        .message-container {
+            display: none;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .message-container h1 {
+            font-size: 2.5rem;
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+
+        .message-container p {
+            font-size: 1.2rem;
+            margin-top: 0;
+            color: #555;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -60px;
+            width: 30px;
+            height: 40px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: floatBalloon 10s ease-in infinite;
+            z-index: 1;
+        }
+
+        .balloon:nth-child(2) { background-color: #ffb6c1; left: 20%; width: 25px; height: 35px; animation-duration: 6s; }
+        .balloon:nth-child(3) { background-color: #ffa07a; left: 50%; width: 20px; height: 30px; animation-duration: 8s; }
+        .balloon:nth-child(4) { background-color: #add8e6; left: 70%; width: 28px; height: 38px; animation-duration: 7s; }
+
+        @keyframes floatBalloon {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-1200px); opacity: 0; }
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            animation: explode 1s ease-out infinite;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <button class="open-button" onclick="openGift()">Mở Quà</button>
+    </div>
+
+    <div class="cake">
+        <img src="https://example.com/birthday-cake.png" alt="Bánh Sinh Nhật">
+        <button class="open-button" onclick="openMessage()">Mở Thiệp</button>
+    </div>
+
+    <div class="message-container">
+        <h1>Chúc Mừng Sinh Nhật!</h1>
+        <p>Chúc mừng sinh nhật bé ạ, chúc bé luôn khỏe mạnh và học giỏi nhen. Cảm ơn bé nhiều lắm. Yêu bé!</p>
+    </div>
+
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <script>
+        function openGift() {
+            document.querySelector('.box').style.display = 'none'; // Ẩn hộp quà
+            document.querySelector('.cake').style.display = 'block'; // Hiển thị bánh sinh nhật
+        }
+
+        function openMessage() {
+            document.querySelector('.cake').style.display = 'none'; // Ẩn bánh sinh nhật
+            document.querySelector('.message-container').style.display = 'block'; // Hiển thị thiệp mừng
+        }
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`; // Tạo màu ngẫu nhiên
+            firework.style.backgroundColor = randomColor;
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 50 + '%';
+            document.body.appendChild(firework);
+
+            setTimeout(() => firework.remove(), 1000); // Xóa pháo hoa sau 1 giây
+        }
+
+        setInterval(createFirework, 500); // Tạo pháo hoa mới mỗi 0.5 giây
+    </script>
+</body>
+</html>
